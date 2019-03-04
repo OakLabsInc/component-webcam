@@ -1,0 +1,30 @@
+{
+  "name": "@oaklabs/component-webcam",
+  "version": "1.0.0",
+  "description": "A example using component-webcam",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OakLabsInc/component-webcam.git"
+  },
+  "keywords": [
+    "OakOS",
+    "webcam"
+  ],
+  "authors": [
+    "Aaron Adelson <aaronsadelson@gmail.com>",
+    "Flynn Joffray <nucleardreamer@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/OakLabsInc/component-webcam/issues"
+  },
+  "homepage": "https://github.com/OakLabsInc/component-webcam#readme",
+  "dependencies": {
+    "lodash": "~4.17.11",
+    "quick-grpc": "~1.0.2"
+  }
+}

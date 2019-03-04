@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package oak.application;
+
+// Manage streams from webcams connected to the host.
+//
+// The 'webcam' module must be activated before these RPCs are available.
+//
+// 'webcam_id' values come from serial numbers reported by the
+// webcams themselves.
+service Webcam {
+
+  // Lists available webcams and the modes (resolution and framerate)
+  // they support
+  rpc Info (Empty) returns (WebcamInformation) {}
+
+  // Starts a video stream served over HTTP at a returned URL
+  // A webcam can only have one stream at a time and a port can only
+  // be used for one stream at a time.
+  rpc StartStream (StreamRequest) returns (JpgStream) {}
+
+  // Stops a previously started stream from a specified camera
+  rpc StopStream (StreamRequest) returns (Empty) {}
+}
+
+message WebcamInformation {
+  repeated Webcam webcams = 1;
+  message Webcam {
+    string webcam_id = 1;
+    repeated string available_modes = 3;
+  }
+}
+
+message StreamRequest {
+
+  string webcam_id = 1;
+
+  // Specifies the resolution and framerate the camera should use for
+  // this stream. Must be a value from the 'available_modes' list for
+  // the specified webcam.
+  string mode = 2;
+
+  // The port the stream should be served on. It is up to the caller
+  // to decide which available port to use.
+  string port = 3;
+}
+
+message JpgStream {
+
+  // The local URL where a stream can be reached.
+  string url = 1;
+}
+
+message Empty {}
